@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Курак — лоскутные изделия ручной работы</title>
+<meta name="description" content="Мастерская «Курак»: подушки, пледы, сумки и мелочи для дома в технике курак. Каждое изделие шьётся вручную в единственном экземпляре.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+/* Layout: страница-лоскутное одеяло. Каждый блок — лоскут своего цвета с зубчатым нижним краем и пунктиром-стежком. */
+:root{
+  --blue:#1E3F8F; --blue-deep:#142C6B; --teal:#1FA2A6; --saffron:#F2A81D; --red:#C8402B;
+  --ivory:#FBF4E4; --ink:#2A1E24; --plum:#7A2E5B; --green:#5E8C4A; --pink:#E98BA0;
+  --bg-about:#FFE7B0; --bg-materials:#CFEDE8; --bg-works:#FFFCF8; --bg-order:#F9D5CC;
+  --f-head:"Yeseva One",Georgia,serif;
+  --f-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --f-hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --edge:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font:400 17px/1.65 var(--f-body);color:var(--ink);background:var(--ivory)}
+h1,h2,h3{font-family:var(--f-head);font-weight:400;line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--saffron);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:20px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Шапка */
+.head{position:sticky;top:0;z-index:50;background:var(--blue-deep);color:var(--ivory);box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.head .wrap{display:flex;align-items:center;gap:20px;min-height:64px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 24px var(--f-head)}
+.logo svg{width:34px;height:34px;flex:none}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;opacity:.9}
+.nav a:hover{opacity:1;text-decoration:underline;text-decoration-style:dashed;text-underline-offset:6px}
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;font:800 16px/1.2 var(--f-body);text-decoration:none;border:2px dashed transparent;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{background:var(--saffron);color:var(--ink);box-shadow:0 4px 0 #b97d09}
+.btn-ghost{border-color:var(--ivory);color:var(--ivory);background:transparent}
+.head .btn{padding:8px 18px;font-size:15px}
+
+/* Блоки и зубчатая кромка */
+.sec{position:relative;padding-block:84px}
+.sec::after{content:"";position:absolute;left:0;right:0;bottom:calc(var(--edge) * -1 + 1px);height:var(--edge);background:var(--c);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 0H28L14 14Z'/%3E%3C/svg%3E") repeat-x 0 0/28px 14px;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 0H28L14 14Z'/%3E%3C/svg%3E") repeat-x 0 0/28px 14px}
+.s1{--c:var(--blue);background:var(--blue);color:var(--ivory);z-index:6}
+.s2{--c:var(--bg-about);background:var(--bg-about);z-index:5}
+.s3{--c:var(--bg-materials);background:var(--bg-materials);z-index:4}
+.s4{--c:var(--bg-works);background:var(--bg-works);z-index:3}
+.s5{--c:var(--bg-order);background:var(--bg-order);z-index:2}
+.s6{--c:var(--blue);background:var(--blue);color:var(--ivory);z-index:1}
+.sec h2{font-size:clamp(30px,4.4vw,44px);margin-bottom:16px}
+.lead{max-width:38em}
+.kicker{font:600 14px var(--f-body);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;opacity:.75}
+.hand{font:600 24px/1.25 var(--f-hand)}
+.stitch{border:2px dashed currentColor}
+
+/* Приветствие */
+.hero{padding-block:72px 96px}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,6vw,64px);margin-bottom:22px}
+.hero p{max-width:36em;margin-bottom:14px}
+.hero .what{opacity:.92}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.quilt-box{min-width:0}
+.quilt{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:10px;background:var(--ivory);border-radius:6px;outline:2px dashed var(--saffron);outline-offset:6px;box-shadow:0 8px 0 var(--blue-deep)}
+.patch{appearance:none;border:0;padding:0;margin:0;aspect-ratio:1;background:none;cursor:pointer;display:block;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.patch svg{display:block;width:100%;height:100%}
+.patch.in{animation:pop .45s both;animation-delay:calc(var(--i) * 45ms)}
+@keyframes pop{from{opacity:0;transform:scale(.4) rotate(-40deg)}to{opacity:1}}
+.hint{font:600 23px var(--f-hand);margin-top:22px;text-align:center;color:var(--saffron)}
+
+/* Узоры (symbols) */
+.k0{--a:#F2A81D;--b:#1E3F8F;--c:#FBF4E4}
+.k1{--a:#1FA2A6;--b:#FBF4E4;--c:#C8402B}
+.k2{--a:#C8402B;--b:#F2A81D;--c:#142C6B}
+.k3{--a:#FBF4E4;--b:#7A2E5B;--c:#E98BA0}
+.k4{--a:#5E8C4A;--b:#FBF4E4;--c:#F2A81D}
+.k5{--a:#E98BA0;--b:#1E3F8F;--c:#FBF4E4}
+.k6{--a:#142C6B;--b:#1FA2A6;--c:#F2A81D}
+.k7{--a:#7A2E5B;--b:#F2A81D;--c:#FBF4E4}
+
+/* О мастере */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.polaroid{background:#fff;padding:14px 14px 18px;box-shadow:0 10px 24px rgba(42,30,36,.22);transform:rotate(-2.5deg);max-width:440px;margin-inline:auto;min-width:0}
+.polaroid svg{display:block;width:100%;height:auto;background:var(--ivory)}
+.polaroid figcaption{font:600 26px var(--f-hand);text-align:center;margin-top:12px;color:var(--plum)}
+.about-text p{max-width:36em;margin-bottom:14px}
+.principles{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.principles li{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border:2px dashed var(--plum);border-radius:10px;background:rgba(255,255,255,.45)}
+.principles svg{width:30px;height:30px;flex:none;margin-top:2px}
+.principles b{display:block;font-weight:800}
+
+/* Материалы */
+.mats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
+.mat{background:var(--ivory);border-radius:12px;padding:14px 14px 20px;border:2px dashed var(--teal);min-width:0}
+.sw{height:96px;border-radius:8px;margin-bottom:14px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.mat h3{font-size:21px;margin-bottom:6px}
+.mat p{font-size:15.5px;line-height:1.55}
+.sw-cotton{background:repeating-linear-gradient(0deg,rgba(30,63,143,.18) 0 2px,transparent 2px 6px),repeating-linear-gradient(90deg,rgba(30,63,143,.18) 0 2px,transparent 2px 6px),#F7EFD9}
+.sw-linen{background:repeating-linear-gradient(90deg,rgba(90,70,40,.22) 0 1px,transparent 1px 5px),repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 1px,transparent 1px 7px),#D9C9A3}
+.sw-velvet{background:radial-gradient(circle at 30% 30%,#B0477F,#7A2E5B 55%,#4B1838)}
+.sw-silk{background:linear-gradient(115deg,#E98BA0 0%,#fbd3dc 28%,#E98BA0 45%,#c4566f 70%,#f6b0c0 100%)}
+.sw-wool{background:radial-gradient(rgba(255,255,255,.35) 1.5px,transparent 2px) 0 0/8px 8px,radial-gradient(rgba(0,0,0,.12) 1.5px,transparent 2px) 4px 4px/8px 8px,#8CA37A}
+.sw-fill{background:repeating-linear-gradient(35deg,#F2A81D 0 3px,transparent 3px 14px),repeating-linear-gradient(-35deg,#C8402B 0 2px,transparent 2px 18px),#FBF4E4}
+.note{margin-top:34px;display:flex;gap:14px;align-items:center}
+.note svg{width:44px;height:44px;flex:none}
+
+/* Изделия */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 34px}
+.filters button{font:800 15px var(--f-body);padding:9px 20px;border-radius:999px;border:2px dashed var(--blue);background:transparent;color:var(--blue);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--blue);color:var(--ivory);border-style:solid}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:var(--ivory);border-radius:12px;border:2px dashed var(--blue);padding:12px 12px 20px;display:flex;flex-direction:column;min-width:0}
+.card[hidden]{display:none}
+.art{aspect-ratio:5/4;border-radius:8px;overflow:hidden;background:#fff;margin-bottom:14px}
+.art svg,.art img{display:block;width:100%;height:100%;object-fit:cover}
+.card h3{font-size:22px;margin-bottom:6px}
+.card p{font-size:15.5px;line-height:1.55}
+.meta{font:600 13.5px var(--f-body);letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-top:10px}
+.card a.more{margin-top:auto;padding-top:14px;font-weight:800;color:var(--red);text-decoration-style:dashed;text-underline-offset:5px}
+
+/* Заказ */
+.cols{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;margin-top:34px;align-items:start}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s;display:grid;gap:0}
+.steps li{counter-increment:s;position:relative;padding:0 0 22px 62px;min-height:48px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--red);color:var(--ivory);font:400 22px/44px var(--f-head);text-align:center}
+.steps li::after{content:"";position:absolute;left:21px;top:48px;bottom:4px;border-left:2px dashed var(--red)}
+.steps li:last-child::after{display:none}
+.steps b{display:block;font-weight:800;font-size:18px}
+.terms{background:var(--ivory);border:2px dashed var(--red);border-radius:12px;padding:22px 24px}
+.terms h3{font-size:22px;margin-bottom:12px}
+.terms dl{margin:0;display:grid;gap:12px}
+.terms dt{font:800 13.5px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+.terms dd{margin:0;font-size:16px;line-height:1.5}
+
+/* Контакты */
+.ch{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.ch a{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;border:2px dashed var(--ivory);text-decoration:none;background:rgba(255,255,255,.06);min-width:0;transition:background .15s,transform .15s}
+.ch a:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.ch svg{width:40px;height:40px;flex:none}
+.ch b{display:block;font:400 22px var(--f-head)}
+.ch span{font-size:15px;opacity:.85;overflow-wrap:anywhere}
+.hours{margin-top:26px;font:600 26px var(--f-hand);color:var(--saffron)}
+
+/* Подвал */
+.foot{background:var(--blue-deep);color:var(--ivory);padding-block:30px}
+.foot .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:15px}
+
+@media (max-width:860px){
+  .hero-grid,.about-grid,.cols{grid-template-columns:1fr;gap:40px}
+  .mats,.grid{grid-template-columns:repeat(2,1fr)}
+  .sec{padding-block:64px}
+}
+@media (max-width:640px){
+  .nav{display:none}
+  .head .btn{margin-left:auto}
+  .mats,.grid,.ch{grid-template-columns:1fr}
+  .sw{height:72px}
+  .hero{padding-block:44px 72px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Образцы узоров -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="p1" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><path d="M0 0L40 40H0Z" fill="var(--b)"/></symbol>
+    <symbol id="p2" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><path d="M20 3L37 20L20 37L3 20Z" fill="var(--b)"/><circle cx="20" cy="20" r="4" fill="var(--c)"/></symbol>
+    <symbol id="p3" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><path d="M0 0H20V20ZM40 0V20H20ZM40 40H20V20ZM0 40V20H20Z" fill="var(--b)"/></symbol>
+    <symbol id="p4" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><path d="M9 31C8 8 33 7 31 22C30 30 19 30 20 22" fill="none" stroke="var(--b)" stroke-width="4.5" stroke-linecap="round"/><circle cx="20" cy="22" r="2.2" fill="var(--c)"/></symbol>
+    <symbol id="p5" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><rect x="6" y="6" width="28" height="28" fill="var(--b)"/><rect x="13" y="13" width="14" height="14" fill="var(--c)"/></symbol>
+    <symbol id="p6" viewBox="0 0 40 40"><rect width="40" height="40" fill="var(--a)"/><rect y="5" width="40" height="7" fill="var(--b)"/><rect y="17" width="40" height="7" fill="var(--c)"/><rect y="29" width="40" height="7" fill="var(--b)"/></symbol>
+  </defs>
+</svg>
+
+<header class="head" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Курак, наверх">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="15" height="15" fill="#F2A81D"/><rect x="18" y="1" width="15" height="15" fill="#1FA2A6"/><rect x="1" y="18" width="15" height="15" fill="#C8402B"/><rect x="18" y="18" width="15" height="15" fill="#E98BA0"/></svg>
+      Курак
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#about">О мастере</a><a href="#materials">Материалы</a><a href="#works">Изделия</a><a href="#order">Заказ</a>
+    </nav>
+    <a class="btn btn-main" href="#contacts">Написать</a>
+  </div>
+</header>
+
+<main>
+<!-- Приветствие -->
+<section class="sec s1 hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Привет! Здесь шьют уют из лоскутков</h1>
+      <p>Меня зовут Айгуль. Я шью подушки, пледы, сумки и мелочи для дома. Каждая вещь делается вручную и существует в одном экземпляре.</p>
+      <p class="what">Курак (құрақ) — старинная казахская техника. Из маленьких кусочков ткани собирается одно большое полотно, и ни один лоскут не пропадает зря.</p>
+      <div class="cta">
+        <a class="btn btn-main" href="#works">Посмотреть изделия</a>
+        <a class="btn btn-ghost" href="#contacts">Написать мастеру</a>
+      </div>
+    </div>
+    <div class="quilt-box">
+      <div class="quilt" id="quilt" role="group" aria-label="Лоскутное полотно из 25 кусочков"></div>
+      <p class="hint">Нажмите на лоскуток — он повернётся</p>
+    </div>
+  </div>
+</section>
+
+<!-- О мастере -->
+<section class="sec s2" id="about">
+  <div class="wrap about-grid">
+    <figure class="polaroid" style="margin:0 auto">
+      <svg viewBox="0 0 320 260" role="img" aria-label="Рабочая корзинка мастера: лоскуты, катушка ниток, иголка и пуговица">
+        <rect width="320" height="260" fill="#FBF4E4"/>
+        <g transform="rotate(-8 90 70)"><use href="#p2" class="k1" x="40" y="30" width="70" height="70"/></g>
+        <g transform="rotate(10 200 60)"><use href="#p4" class="k3" x="165" y="25" width="70" height="70"/></g>
+        <g transform="rotate(-4 255 110)"><use href="#p6" class="k2" x="225" y="85" width="56" height="56"/></g>
+        <path d="M45 120H275L255 225Q253 235 243 235H77Q67 235 65 225Z" fill="#C9954F" stroke="#8a5d24" stroke-width="3"/>
+        <path d="M50 140H270M54 162H266M58 184H262M62 206H258" stroke="#8a5d24" stroke-width="2" opacity=".6"/>
+        <path d="M80 120C80 62 240 62 240 120" fill="none" stroke="#8a5d24" stroke-width="7" stroke-linecap="round"/>
+        <g transform="translate(112 152)"><rect width="26" height="40" rx="3" fill="#C8402B"/><rect x="-4" width="34" height="7" rx="2" fill="#E8CFA0"/><rect x="-4" y="33" width="34" height="7" rx="2" fill="#E8CFA0"/></g>
+        <circle cx="198" cy="172" r="15" fill="#1FA2A6" stroke="#0f6f72" stroke-width="2"/><circle cx="193" cy="168" r="2.2" fill="#0f6f72"/><circle cx="203" cy="168" r="2.2" fill="#0f6f72"/><circle cx="193" cy="177" r="2.2" fill="#0f6f72"/><circle cx="203" cy="177" r="2.2" fill="#0f6f72"/>
+        <path d="M150 232L232 150" stroke="#d8d8d8" stroke-width="3" stroke-linecap="round"/><circle cx="233" cy="149" r="3" fill="none" stroke="#d8d8d8" stroke-width="1.5"/>
+        <path d="M138 160C160 130 190 128 232 150" fill="none" stroke="#C8402B" stroke-width="1.8" stroke-dasharray="4 3"/>
+      </svg>
+      <figcaption>рабочая корзинка</figcaption>
+    </figure>
+    <div class="about-text">
+      <p class="kicker">О мастере и бренде</p>
+      <h2>Из обрезков получается целое</h2>
+      <p>В технике курак лоскуты не выбрасывают. Остатки тканей режут, раскладывают и сшивают в новое полотно. Узоры повторяют орнаменты степи, самый любимый из них — «бараний рог».</p>
+      <p>Я подбираю цвета и размеры под ваш дом или подарок, а потом шью каждую вещь от первого стежка до последнего сама.</p>
+      <ul class="principles">
+        <li><svg viewBox="0 0 30 30" aria-hidden="true"><use href="#p2" class="k0" width="30" height="30"/></svg><span><b>Единственный экземпляр</b>Второй такой же вещи не будет, даже если вы закажете «как та».</span></li>
+        <li><svg viewBox="0 0 30 30" aria-hidden="true"><use href="#p3" class="k1" width="30" height="30"/></svg><span><b>Цвета и размер под вас</b>Расскажите про интерьер или адресата, и я подберу ткани.</span></li>
+        <li><svg viewBox="0 0 30 30" aria-hidden="true"><use href="#p4" class="k3" width="30" height="30"/></svg><span><b>Только ручная работа</b>Без поточного производства и готовых наборов.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Материалы -->
+<section class="sec s3" id="materials">
+  <div class="wrap">
+    <p class="kicker">Материалы</p>
+    <h2>Из чего шьются вещи</h2>
+    <p class="lead">Я выбираю ткани, которые приятно держать в руках и которые хорошо стареют. Разные фактуры в одном полотне делают его живым.</p>
+    <div class="mats">
+      <article class="mat"><div class="sw sw-cotton" role="img" aria-label="Образец: хлопок"></div><h3>Хлопок</h3><p>Основа большинства изделий. Мягкий, дышащий, легко стирается.</p></article>
+      <article class="mat"><div class="sw sw-linen" role="img" aria-label="Образец: лён"></div><h3>Лён</h3><p>Плотный и немного шероховатый. Хорош для сумок и прихваток.</p></article>
+      <article class="mat"><div class="sw sw-velvet" role="img" aria-label="Образец: бархат и велюр"></div><h3>Бархат и велюр</h3><p>Глубокий цвет и мягкий ворс для подушек и панно.</p></article>
+      <article class="mat"><div class="sw sw-silk" role="img" aria-label="Образец: шёлк и атлас"></div><h3>Шёлк и атлас</h3><p>Гладкий блеск для акцентов и нарядных мелочей.</p></article>
+      <article class="mat"><div class="sw sw-wool" role="img" aria-label="Образец: шерсть и войлок"></div><h3>Шерсть и войлок</h3><p>Тёплые фактуры для пледов и зимних вещей.</p></article>
+      <article class="mat"><div class="sw sw-fill" role="img" aria-label="Образец: наполнитель и нитки"></div><h3>Наполнитель и нитки</h3><p>Мягкий гипоаллергенный наполнитель и крепкие нитки, которые не боятся стирки.</p></article>
+    </div>
+    <div class="note">
+      <svg viewBox="0 0 44 44" aria-hidden="true"><use href="#p5" class="k4" width="44" height="44"/></svg>
+      <p class="hand">Нужна конкретная ткань или цвет? Напишите, поищу именно такую. — Айгуль</p>
+    </div>
+  </div>
+</section>
+
+<!-- Изделия -->
+<section class="sec s4" id="works">
+  <div class="wrap">
+    <p class="kicker">Изделия</p>
+    <h2>Что уже сшито</h2>
+    <p class="lead">Это примеры работ. Любую вещь можно сшить в других цветах и размерах.</p>
+    <div class="filters" role="group" aria-label="Фильтр изделий">
+      <button type="button" data-f="all" aria-pressed="true">Все изделия</button>
+      <button type="button" data-f="home" aria-pressed="false">Для дома</button>
+      <button type="button" data-f="bags" aria-pressed="false">Сумки и мелочи</button>
+    </div>
+    <div class="grid" id="grid">
+
+      <article class="card" data-cat="home">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Подушка «Көктем» из девяти разноцветных лоскутных квадратов">
+          <rect width="250" height="200" fill="#CFEDE8"/>
+          <rect x="52" y="22" width="146" height="146" rx="10" fill="#142C6B" opacity=".25" transform="translate(4 6)"/>
+          <rect x="52" y="22" width="146" height="146" rx="10" fill="#FBF4E4"/>
+          <g>
+            <use href="#p2" class="k0" x="58" y="28" width="44" height="44"/><use href="#p1" class="k1" x="103" y="28" width="44" height="44"/><use href="#p3" class="k2" x="148" y="28" width="44" height="44"/>
+            <use href="#p5" class="k4" x="58" y="73" width="44" height="44"/><use href="#p4" class="k3" x="103" y="73" width="44" height="44"/><use href="#p6" class="k5" x="148" y="73" width="44" height="44"/>
+            <use href="#p1" class="k7" x="58" y="118" width="44" height="44"/><use href="#p3" class="k6" x="103" y="118" width="44" height="44"/><use href="#p2" class="k1" x="148" y="118" width="44" height="44"/>
+          </g>
+          <rect x="52" y="22" width="146" height="146" rx="10" fill="none" stroke="#FBF4E4" stroke-width="5" stroke-dasharray="1 0"/>
+        </svg></div>
+        <h3>Подушка «Көктем»</h3>
+        <p>Весенняя подушка из девяти разных узоров. Мягкий хлопок и бархатные вставки.</p>
+        <p class="meta">45 × 45 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+      <article class="card" data-cat="home">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Плед «Жұлдыз» из лоскутов с бахромой">
+          <rect width="250" height="200" fill="#FFE7B0"/>
+          <rect x="22" y="30" width="206" height="140" fill="#142C6B" opacity=".2" transform="translate(4 6)"/>
+          <rect x="22" y="30" width="206" height="140" fill="#FBF4E4"/>
+          <g>
+            <use href="#p3" class="k2" x="26" y="34" width="33" height="33"/><use href="#p5" class="k1" x="60" y="34" width="33" height="33"/><use href="#p2" class="k0" x="94" y="34" width="33" height="33"/><use href="#p4" class="k3" x="128" y="34" width="33" height="33"/><use href="#p1" class="k4" x="162" y="34" width="33" height="33"/><use href="#p3" class="k5" x="196" y="34" width="28" height="33"/>
+            <use href="#p2" class="k7" x="26" y="68" width="33" height="33"/><use href="#p4" class="k0" x="60" y="68" width="33" height="33"/><use href="#p6" class="k6" x="94" y="68" width="33" height="33"/><use href="#p3" class="k1" x="128" y="68" width="33" height="33"/><use href="#p5" class="k2" x="162" y="68" width="33" height="33"/><use href="#p2" class="k3" x="196" y="68" width="28" height="33"/>
+            <use href="#p1" class="k5" x="26" y="102" width="33" height="33"/><use href="#p3" class="k4" x="60" y="102" width="33" height="33"/><use href="#p5" class="k3" x="94" y="102" width="33" height="33"/><use href="#p2" class="k2" x="128" y="102" width="33" height="33"/><use href="#p4" class="k1" x="162" y="102" width="33" height="33"/><use href="#p6" class="k0" x="196" y="102" width="28" height="33"/>
+            <use href="#p4" class="k6" x="26" y="136" width="33" height="30"/><use href="#p2" class="k5" x="60" y="136" width="33" height="30"/><use href="#p1" class="k0" x="94" y="136" width="33" height="30"/><use href="#p6" class="k7" x="128" y="136" width="33" height="30"/><use href="#p3" class="k3" x="162" y="136" width="33" height="30"/><use href="#p5" class="k4" x="196" y="136" width="28" height="30"/>
+          </g>
+          <path d="M26 172v10M34 172v10M42 172v10M50 172v10M58 172v10M66 172v10M74 172v10M82 172v10M90 172v10M98 172v10M106 172v10M114 172v10M122 172v10M130 172v10M138 172v10M146 172v10M154 172v10M162 172v10M170 172v10M178 172v10M186 172v10M194 172v10M202 172v10M210 172v10M218 172v10" stroke="#C8402B" stroke-width="2" stroke-linecap="round"/>
+        </svg></div>
+        <h3>Плед «Жұлдыз»</h3>
+        <p>Большой плед с бахромой. Шерстяная изнанка держит тепло, лицевая сторона собрана из лоскутов.</p>
+        <p class="meta">140 × 180 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+      <article class="card" data-cat="bags">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Сумка-шоппер «Жиде» с лоскутной панелью из четырёх узоров">
+          <rect width="250" height="200" fill="#F9D5CC"/>
+          <path d="M88 70C88 20 162 20 162 70" fill="none" stroke="#7A2E5B" stroke-width="9" stroke-linecap="round"/>
+          <path d="M62 70H188L198 180H52Z" fill="#E8CFA0"/>
+          <path d="M62 70H188L198 180H52Z" fill="none" stroke="#7A2E5B" stroke-width="3" stroke-dasharray="6 4"/>
+          <use href="#p4" class="k1" x="84" y="94" width="40" height="40"/><use href="#p3" class="k0" x="126" y="94" width="40" height="40"/>
+          <use href="#p2" class="k3" x="84" y="136" width="40" height="40"/><use href="#p1" class="k2" x="126" y="136" width="40" height="40"/>
+        </svg></div>
+        <h3>Сумка-шоппер «Жиде»</h3>
+        <p>Вместительная сумка из льна с лоскутной панелью. Выдерживает покупки на целую неделю.</p>
+        <p class="meta">38 × 40 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+      <article class="card" data-cat="bags">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Косметичка «Тюльпан» на молнии с лоскутными вставками">
+          <rect width="250" height="200" fill="#CFEDE8"/>
+          <rect x="34" y="62" width="182" height="96" rx="22" fill="#142C6B" opacity=".2" transform="translate(4 6)"/>
+          <rect x="34" y="62" width="182" height="96" rx="22" fill="#FBF4E4"/>
+          <clipPath id="cp"><rect x="34" y="62" width="182" height="96" rx="22"/></clipPath>
+          <g clip-path="url(#cp)"><use href="#p5" class="k3" x="34" y="84" width="60" height="74"/><use href="#p2" class="k0" x="94" y="84" width="62" height="74"/><use href="#p3" class="k1" x="156" y="84" width="60" height="74"/></g>
+          <rect x="34" y="62" width="182" height="22" rx="11" fill="#C8402B"/>
+          <path d="M46 73H204" stroke="#FBF4E4" stroke-width="2.5" stroke-dasharray="3 3"/>
+          <rect x="196" y="64" width="12" height="18" rx="3" fill="#F2A81D"/>
+        </svg></div>
+        <h3>Косметичка «Тюльпан»</h3>
+        <p>Небольшая косметичка на молнии. Внутри плотная подкладка, снаружи атлас и хлопок.</p>
+        <p class="meta">20 × 12 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+      <article class="card" data-cat="bags">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Две прихватки «Шай» из лоскутов с петельками">
+          <rect width="250" height="200" fill="#FFE7B0"/>
+          <g transform="rotate(-7 80 100)">
+            <rect x="28" y="48" width="104" height="104" rx="8" fill="#142C6B" opacity=".2" transform="translate(4 5)"/>
+            <rect x="28" y="48" width="104" height="104" rx="8" fill="#FBF4E4"/>
+            <use href="#p2" class="k2" x="33" y="53" width="47" height="47"/><use href="#p1" class="k1" x="80" y="53" width="47" height="47"/>
+            <use href="#p3" class="k0" x="33" y="100" width="47" height="47"/><use href="#p4" class="k3" x="80" y="100" width="47" height="47"/>
+            <path d="M44 48C38 28 62 28 56 48" fill="none" stroke="#C8402B" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <g transform="rotate(8 170 100)">
+            <rect x="118" y="52" width="104" height="104" rx="8" fill="#142C6B" opacity=".2" transform="translate(4 5)"/>
+            <rect x="118" y="52" width="104" height="104" rx="8" fill="#FBF4E4"/>
+            <use href="#p5" class="k5" x="123" y="57" width="47" height="47"/><use href="#p6" class="k4" x="170" y="57" width="47" height="47"/>
+            <use href="#p4" class="k7" x="123" y="104" width="47" height="47"/><use href="#p3" class="k6" x="170" y="104" width="47" height="47"/>
+            <path d="M200 52C194 32 218 32 212 52" fill="none" stroke="#C8402B" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg></div>
+        <h3>Прихватки «Шай»</h3>
+        <p>Пара прихваток к чаю. Внутри термослой, снаружи лён и хлопок, сверху петелька.</p>
+        <p class="meta">Набор, 2 шт. по 20 × 20 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+      <article class="card" data-cat="home">
+        <div class="art"><svg viewBox="0 0 250 200" role="img" aria-label="Панно «Қошқар мүйіз» из девяти квадратов с узором бараний рог в раме">
+          <rect width="250" height="200" fill="#CFEDE8"/>
+          <rect x="52" y="14" width="146" height="146" fill="#142C6B" opacity=".2" transform="translate(4 6)"/>
+          <rect x="52" y="14" width="146" height="146" fill="#7A2E5B"/>
+          <rect x="60" y="22" width="130" height="130" fill="#FBF4E4"/>
+          <use href="#p4" class="k0" x="62" y="24" width="42" height="42"/><use href="#p4" class="k1" x="104" y="24" width="42" height="42"/><use href="#p4" class="k2" x="146" y="24" width="42" height="42"/>
+          <use href="#p4" class="k3" x="62" y="66" width="42" height="42"/><use href="#p4" class="k5" x="104" y="66" width="42" height="42"/><use href="#p4" class="k4" x="146" y="66" width="42" height="42"/>
+          <use href="#p4" class="k7" x="62" y="108" width="42" height="42"/><use href="#p4" class="k6" x="104" y="108" width="42" height="42"/><use href="#p4" class="k0" x="146" y="108" width="42" height="42"/>
+          <path d="M125 14V6" stroke="#7A2E5B" stroke-width="2"/>
+          <path d="M96 6H154" stroke="#7A2E5B" stroke-width="2" fill="none"/>
+        </svg></div>
+        <h3>Панно «Қошқар мүйіз»</h3>
+        <p>Настенное панно с узором «бараний рог» в девяти цветах. В деревянной раме, с подвесом.</p>
+        <p class="meta">60 × 60 см</p>
+        <a class="more" href="#contacts">Заказать похожее</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Заказ и доставка -->
+<section class="sec s5" id="order">
+  <div class="wrap">
+    <p class="kicker">Заказ и доставка</p>
+    <h2>Как заказать вещь</h2>
+    <div class="cols">
+      <ol class="steps">
+        <li><b>Напишите мастеру</b>Расскажите, что хотите и для чего. Можно прислать фото интерьера.</li>
+        <li><b>Выберите ткани и размер</b>Я пришлю варианты сочетаний, вы выберете любимое.</li>
+        <li><b>Внесите предоплату</b>Половину стоимости, чтобы я купила ткани и села за работу.</li>
+        <li><b>Пошив</b>Шью вручную и присылаю фото, пока вещь ещё в процессе.</li>
+        <li><b>Отправка</b>Упаковываю и отправляю после оплаты остатка.</li>
+      </ol>
+      <aside class="terms" aria-label="Условия">
+        <h3>Условия</h3>
+        <dl>
+          <div><dt>Сроки</dt><dd>Готовые изделия отправляются за 1–2 дня. Под заказ шью от 5 до 14 дней.</dd></div>
+          <div><dt>Оплата</dt><dd>Предоплата 50%, остальное перед отправкой.</dd></div>
+          <div><dt>Доставка</dt><dd>Почтой и курьерскими службами, стоимость по тарифу службы. Самовывоз в городе мастера бесплатный.</dd></div>
+          <div><dt>Уход</dt><dd>Стирка при 30 °C, без отжима в машине.</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Контакты -->
+<section class="sec s6" id="contacts">
+  <div class="wrap">
+    <p class="kicker">Контакты</p>
+    <h2>Напишите мне</h2>
+    <p class="lead">Выберите, где вам удобнее. Отвечаю лично, обычно в тот же день.</p>
+    <div class="ch">
+      <a href="https://t.me/kurak_studio" target="_blank" rel="noopener">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1FA2A6"/><path d="M9 19.5L31 11l-3.5 18-7-5-3.5 3.5-.5-6.5L28 13.5 14 21z" fill="#FBF4E4"/></svg>
+        <div><b>Telegram</b><span>@kurak_studio</span></div>
+      </a>
+      <a href="https://instagram.com/kurak.studio" target="_blank" rel="noopener">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#E98BA0"/><rect x="10" y="10" width="20" height="20" rx="6" fill="none" stroke="#2A1E24" stroke-width="2.4"/><circle cx="20" cy="20" r="4.6" fill="none" stroke="#2A1E24" stroke-width="2.4"/><circle cx="26" cy="14" r="1.4" fill="#2A1E24"/></svg>
+        <div><b>Instagram</b><span>@kurak.studio</span></div>
+      </a>
+      <a href="https://wa.me/77000000000" target="_blank" rel="noopener">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#5E8C4A"/><path d="M11 29l1.6-5A9 9 0 1 1 16 27.4z" fill="none" stroke="#FBF4E4" stroke-width="2.4" stroke-linejoin="round"/><path d="M16.5 15.5c0 4 3.5 7.5 7.5 7.5l1.5-2-2.5-1.5-1 1c-1.5-.5-2.5-1.5-3-3l1-1-1.5-2.5z" fill="#FBF4E4"/></svg>
+        <div><b>WhatsApp</b><span>+7 700 000 00 00</span></div>
+      </a>
+      <a href="mailto:hello@kurak.example">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#F2A81D"/><rect x="9" y="12" width="22" height="16" rx="2.5" fill="none" stroke="#2A1E24" stroke-width="2.4"/><path d="M10 14l10 8 10-8" fill="none" stroke="#2A1E24" stroke-width="2.4" stroke-linejoin="round"/></svg>
+        <div><b>Почта</b><span>hello@kurak.example</span></div>
+      </a>
+    </div>
+    <p class="hours">Отвечаю ежедневно с 10:00 до 20:00</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Курак. Сшито вручную.</span>
+    <a href="#top">Наверх ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Лоскутное полотно 5×5
+  var quilt=document.getElementById('quilt');
+  var NAMES=['полутреугольник','ромб','вертушка','бараний рог','вложенные квадраты','полосы'];
+  for(var i=0;i<25;i++){
+    var kind=(i*5+Math.floor(i/5)*2)%6;
+    var set=(i*3+Math.floor(i/5))%8;
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='patch in k'+set;
+    b.style.setProperty('--i',i);
+    b.setAttribute('aria-label','Лоскуток '+(i+1)+': '+NAMES[kind]+'. Повернуть');
+    b.dataset.rot='0';
+    b.innerHTML='<svg viewBox="0 0 40 40" aria-hidden="true"><use href="#p'+(kind+1)+'"/></svg>';
+    quilt.appendChild(b);
+  }
+  quilt.addEventListener('click',function(e){
+    var p=e.target.closest('.patch'); if(!p) return;
+    var r=(+p.dataset.rot+90); p.dataset.rot=r;
+    p.style.transform='rotate('+r+'deg)';
+  });
+  // Кнопки сами обрабатывают Enter и Пробел
+
+  // Фильтр изделий
+  var btns=document.querySelectorAll('.filters button');
+  var cards=document.querySelectorAll('#grid .card');
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var f=btn.dataset.f;
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===btn?'true':'false')});
+      cards.forEach(function(c){c.hidden=!(f==='all'||c.dataset.cat===f)});
+    });
+  });
+})();
+</script>
+</body>
+</html>
